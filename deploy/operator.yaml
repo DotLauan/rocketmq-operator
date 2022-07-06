@@ -32,12 +32,12 @@ spec:
       containers:
       - name: manager
         # Replace this with the built image name
-        image: apacherocketmq/rocketmq-operator:0.3.0-snapshot
+        image: docker-reps-dev.szgenjoy.center/apacherocketmq/rocketmq-operator:0.3.0-snapshot
         command:
         - /manager
         args:
         - --leader-elect
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         securityContext:
           allowPrivilegeEscalation: false
         livenessProbe:
@@ -62,4 +62,7 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: OPERATOR_NAME
-          value: "rocketmq-operator"
+          value: "rocketmq-operator"      
+      imagePullSecrets:
+      - name: docker-reps-dev-auth    
+
